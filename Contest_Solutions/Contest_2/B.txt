@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main(){
+    ll t;
+    cin>>t;
+    while(t--){
+        ll buns, beef, chicken;
+        ll priceB, priceC;
+        cin>>buns>>beef>>chicken;
+        cin>>priceB>>priceC;
+        
+        ll first,second;
+        ll salesFirst, salesSecond;
+        if(priceB>priceC){
+            first = beef;
+            second = chicken;
+            salesFirst = priceB;
+            salesSecond = priceC;
+        }
+        else{
+            first = chicken;
+            second = beef;
+            salesFirst = priceC;
+            salesSecond = priceB;
+        }
+        ll ans = 0;
+        //cout<<first<<"   "<<second<<endl;
+        while(buns > 1 && first > 0){
+            ans += salesFirst;
+            buns -= 2;
+            first--;
+        }
+        
+        while(buns > 1 && second > 0){
+            ans += salesSecond;
+            buns -= 2;
+            second--;
+        }
+        cout<<ans<<endl;
+    }
+    return 0;
+}

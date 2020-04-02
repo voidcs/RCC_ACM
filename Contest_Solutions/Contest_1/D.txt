@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll a[600000];
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    ll n;
+    cin>>n;
+    for(int i = 0; i < n; i++){
+        cin>>a[i];
+    }
+    sort(a, a + n);
+    ll small = a[0];
+    ll big = a[n-1];
+    ll ans = (big-small) / 2;
+    ll goal = small + ans;
+    bool flag = 0;
+    for(int i = 0; i < n; i++){
+        if(a[i]+ans!=goal && a[i]!=goal && a[i]-ans!=goal){
+            flag = 1;
+        }
+    }
+
+    if(flag){
+        ll num = distance(a, unique(a, a + n));
+        if(num == 2){
+            cout<<big-small;
+        }
+        else
+            cout<<"-1";
+    }
+    else{
+        cout<<ans;
+    }
+    
+    return 0;
+}

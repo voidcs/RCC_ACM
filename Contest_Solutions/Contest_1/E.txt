@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+pair<ll,ll> a[600000];
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    
+    ll t;
+    cin>>t;
+    while(t--){
+        ll n;
+        cin>>n;
+        for(int i = 0; i < n; i++){
+            ll x, y;
+            cin>>x>>y;
+            a[i].first = x;
+            a[i].second = y;
+        }
+        sort(a, a + n);
+//        for(int i = 0; i < n; i++){
+//            cout<<a[i].first<<"   "<<a[i].second<<endl;
+//        }
+        bool flag = 0;
+        for(int i = 0; i < n-1; i++){
+            if(a[i+1].second < a[i].second){
+                flag = 1;
+            }
+        }
+        
+        if(flag)
+            cout<<"NO\n";
+        else{
+            cout<<"YES\n";
+            pair<ll, ll> pos = {0,0};
+            string ans = "";
+            
+            for(int i = 0; i < n; i++){
+                while(pos.first < a[i].first){
+                    pos.first++;
+                    ans += "R";
+                }
+                while(pos.second < a[i].second){
+                    pos.second++;
+                    ans += "U";
+                }
+            }
+            cout<<ans<<endl;
+        }
+    }
+    
+    return 0;
+}
