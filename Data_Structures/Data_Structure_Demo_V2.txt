@@ -1,0 +1,307 @@
+#include <iostream>
+#include <map>
+#include <queue>
+#include <set>
+#include <stack>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+void selectMap();
+void selectSet();
+void selectQueue();
+void selectPriorityQueue();
+void selectStack();
+
+int main(){
+    int choice = 0;
+    while(choice != -1){
+        cout<<"Which data structure would you like to explore? \n";
+        cout<<"==========================================================================\n"
+                "1) Set\n2) Map\n3) Queue\n4) Priority Queue\n5) Stack\nEnter -1 to quit\n";
+        cin>>choice;
+        
+        if(choice == 1) selectSet();
+        if(choice == 2) selectMap();
+        if(choice == 3) selectQueue();
+        if(choice == 4) selectPriorityQueue();
+        if(choice == 5) selectStack();
+    }
+    int size;
+    cout<<"Enter the size of the array\n";
+    cin>>size;
+    cout<<"Enter "<<size<<" values: \n";
+    int arr[size];
+    for(int i = 0; i < size; i++)
+        cin>>arr[i];
+    cout<<"Shuffling the array...\n";
+    random_shuffle(arr, arr + size);
+    cout<<"Here is your shuffled array\n";
+    for(int i = 0; i < size; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl<<endl;
+    
+    cout<<"Here is the array sorted\n";
+    sort(arr, arr + size);
+    for(int i = 0; i < size; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl<<endl;
+    int small = INT_MAX;
+    int big = -1;
+    for(int i = 0; i < size; i++){
+        big = max(big, arr[i]);
+        small = min(small, arr[i]);
+    }
+    cout<<"The smallest value in the array is: "<<small<<endl;
+    cout<<"The largest value in the array is: "<<big<<endl<<endl;
+    
+    int search;
+    cout<<"Enter a value to search for\n";
+    cin>>search;
+    cout<<"The index of the first match is: "<<lower_bound(arr, arr+size, search)- arr<<endl;
+    cout<<"The index of the first number strictly greater is: "<<upper_bound(arr, arr+size, search)- arr<<endl;
+   
+ 
+    return 0;
+}
+
+
+void selectSet(){
+    int val = 0;
+    int choice = 0;
+    set<int> s;
+    while(choice != -1){
+        cout<<"==========================================================================\n"
+                "\nYou are currently reviewing the set\nMake a selection\n\n"
+            "1) Insert a value\n2) Delete a value\nEnter -1 to quit\n";
+        cin>>choice;
+        cout<<endl;
+
+        
+        if(choice == 1){
+            cout<<"Enter a value to insert\n";
+            cin>>val;
+            s.insert(val);
+        }
+        
+        if(choice == 2){
+            cout<<"Enter a value to delete\n";
+            cin>>val;
+            s.erase(val);
+        }
+        
+        //Can also use s.empty()
+        if(s.size() == 0)
+            cout<<"\nThe set is empty!\n";
+        else{
+            cout<<"\nThe contents of the set: \n";
+        }
+        set<int>::iterator it;
+        for(it = s.begin(); it != s.end(); it++){
+            cout<<*it<<" ";
+        }
+        cout<<endl;
+        if(choice != -1){
+            cout<<"\nPress enter to continue: "<<endl;
+            cin.ignore();
+            cin.get();
+        }
+    }
+}
+void selectMap(){
+    string val;
+    int set = 0;
+    int choice = 0;
+    map<string, int> m;
+    while(choice != -1){
+        cout<<"==========================================================================\n"
+                "\nYou are currently reviewing the map\nMake a selection\n\n"
+            "1) Add a value\n2) Set a value to key\n3) Delete a value\n4) Check value (correct)\n"
+                "5) Check value (incorrect)\nEnter -1 to quit\n";
+        cin>>choice;
+        cout<<endl;
+        
+        if(choice == 1){
+            cout<<"Enter a value to insert: \n";
+            cin>>val;
+            m[val]++;
+        }
+        
+        if(choice == 2){
+            cout<<"Enter the key: \n";
+            cin>>val;
+            cout<<"What do you want to set it to?\n";
+            cin>>set;
+            m[val] = set;
+        }
+        
+        if(choice == 3){
+            cout<<"Enter the key to delete\n";
+            cin>>val;
+            m.erase(val);
+        }
+        
+        if(choice == 4){
+            cout<<"Enter the key\n";
+            cin>>val;
+            if(m.count(val))
+                cout<<m[val]<<endl;
+            else
+                cout<<"Element is not in the map\n";
+        }
+        
+        if(choice == 5){
+            cout<<"Enter the key\n";
+            cin>>val;
+            cout<<m[val]<<endl;
+        }
+        
+        if(m.size() == 0)
+            cout<<"\nThe map is empty!\n";
+        else
+            cout<<"\nThe contents of the map: \n";
+        map<string, int>::iterator it;
+        for(it = m.begin(); it != m.end(); it++){
+            cout<<it->first<<"    "<<it->second<<endl;
+        }
+
+        if(choice != -1){
+            cout<<"\nPress enter to continue: "<<endl;
+            cin.ignore();
+            cin.get();
+        }
+    } 
+
+}
+
+void selectQueue(){
+    int val = 0;
+    int choice = 0;
+    queue<int> q;
+    while(choice != -1){
+        cout<<"==========================================================================\n"
+                "\nYou are currently reviewing the queue\nMake a selection\n\n"
+            "1) Push a value\n2) Get front of queue\n3) Pop front value\nEnter -1 to quit\n";
+        cin>>choice;
+        cout<<endl;
+        
+        if(choice == 1){
+            cout<<"Enter a value to insert: \n";
+            cin>>val;
+            q.push(val);
+        }
+        
+        if(choice == 2){
+            cout<<"The element at the front is: "<<q.front()<<endl;
+        }
+        
+        if(choice == 3){
+            q.pop();
+        }
+
+        if(q.size() == 0)
+            cout<<"\nThe queue is empty!\n";
+        else{
+            cout<<"\nThe contents of the queue: ";
+        }
+        queue<int> it = q;
+        while(!it.empty()){
+            cout<<it.front()<<" ";
+            it.pop();
+        }
+        cout<<endl;
+        if(choice != -1){
+            cout<<"\nPress enter to continue: "<<endl;
+            cin.ignore();
+            cin.get();
+        }
+    }
+}
+
+void selectPriorityQueue(){
+    int val = 0;
+    int choice = 0;
+    priority_queue<int> q;
+    while(choice != -1){
+        cout<<"==========================================================================\n"
+                "\nYou are currently reviewing the priority queue\nMake a selection\n\n"
+            "1) Push a value\n2) Get front of priority queue\n3) Pop front value\nEnter -1 to quit\n";
+        cin>>choice;
+        cout<<endl;
+
+        if(choice == 1){
+            cout<<"Enter a value to insert: \n";
+            cin>>val;
+            q.push(val);
+        }
+        
+        if(choice == 2){
+            cout<<"The element at the front is: "<<q.top()<<endl;
+        }
+        
+        if(choice == 3){
+            q.pop();
+        }
+        
+        if(q.size() == 0)
+            cout<<"\nThe priority queue is empty!\n";
+        else{
+            cout<<"\nThe contents of the priority queue: ";
+        }
+        priority_queue<int> it = q;
+        while(!it.empty()){
+            cout<<it.top()<<" ";
+            it.pop();
+        }
+        cout<<endl;   
+        if(choice != -1){
+            cout<<"\nPress enter to continue: "<<endl;
+            cin.ignore();
+            cin.get();
+        }
+    }
+}
+
+void selectStack(){
+    int val = 0;
+    int choice = 0;
+    stack<int> s;
+    while(choice != -1){
+        cout<<"==========================================================================\n"
+                "\nYou are currently reviewing the stack\nMake a selection\n\n"
+            "1) Push a value\n2) Get top of stack\n3) Pop top value\nEnter -1 to quit\n";
+        cin>>choice;
+        cout<<endl;
+        
+        if(choice == 1){
+            cout<<"Enter a value to insert: \n";
+            cin>>val;
+            s.push(val);
+        }
+        
+        if(choice == 2){
+            cout<<"The element at the top is: "<<s.top()<<endl;
+        }
+        
+        if(choice == 3){
+            s.pop();
+        }
+
+        if(s.size() == 0)
+            cout<<"\nThe stack is empty!\n";
+        else{
+            cout<<"\nThe contents of the stack: ";
+        }
+        stack<int> it = s;
+        while(!it.empty()){
+            cout<<it.top()<<" ";
+            it.pop();
+        }
+        cout<<endl;
+        if(choice != -1){
+            cout<<"\nPress enter to continue: "<<endl;
+            cin.ignore();
+            cin.get();
+        }
+    }
+}
