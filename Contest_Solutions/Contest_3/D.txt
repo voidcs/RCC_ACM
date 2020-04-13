@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main(){
+    ll t;
+    cin>>t;
+    ll curr = 0;
+    ll travel;
+    string str;
+    
+    bool flag = 0;
+    
+    while(t--){
+        cin>>travel>>str;
+        if(curr > 20000 || curr < 0)
+            flag = 1;
+        
+        if(curr == 0 && str != "South")
+            flag = 1;
+        if(curr == 20000 && str != "North")
+            flag = 1;
+        
+        if(str == "South")
+            curr += travel;
+        else if(str == "North")
+            curr -= travel;
+    }
+    
+    if(curr != 0)
+        flag = 1;
+    
+    if (flag)
+        cout<<"NO\n";
+    else
+        cout<<"YES\n";
+    
+
+    return 0;
+}

@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main(){
+    ll t;
+    cin>>t;
+    while(t--){
+        ll a, k;
+        cin>>a>>k;
+        ll ans = 0;
+        while(a != 0){
+            if(a%k == 0){
+                ans++;
+                a /= k;
+            }
+            else{
+                ans += a%k;
+                a -= a%k;
+            } 
+        }
+        cout<<ans<<endl;
+    }
+    return 0;
+}

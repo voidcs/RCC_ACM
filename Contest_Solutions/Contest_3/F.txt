@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main(){
+    ll n, len;
+    cin>>n>>len;
+    set<string> s;
+    string a[n];
+    
+    for(int i = 0; i < n; i++){
+        cin>>a[i];
+        s.insert(a[i]);
+    }
+    
+    string ans;
+    for(int i = 0; i < n; i++){
+        string temp = a[i];
+        reverse(temp.begin(), temp.end());
+        if(a[i] == temp){
+            ans = a[i];
+            s.erase(ans);
+            break;
+        }
+    }
+    for(int i = 0; i < n; i++){
+        string temp = a[i];
+        reverse(temp.begin(), temp.end());
+        if(s.count(temp) && temp != a[i]){
+            ans += temp;
+            ans = a[i] + ans;
+            s.erase(a[i]);
+            s.erase(temp);
+        }
+    }
+    cout<<ans.length()<<endl;
+    cout<<ans<<endl;
+
+    return 0;
+}
