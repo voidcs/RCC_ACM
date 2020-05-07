@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+typedef long long ll;
+ 
+ 
+int main(){
+    int cases;
+    scanf("%d", &cases);
+    
+    while(cases--){
+        ll charge, numTurns, a, b;
+        scanf("%lld%lld%lld%lld", &charge, &numTurns, &a, &b);
+        ll turns = 0;
+        ll ans = 0;
+        if(charge <= numTurns * b)
+            printf("-1\n");
+        else{
+            ll remaining = numTurns * b;
+            charge--;
+            ans = (charge - remaining) / (a - b);
+
+            ans = min(ans, numTurns);
+            printf("%lld\n",ans);
+        }
+       
+            
+    }
+    return 0;
+}

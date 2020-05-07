@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int x;
+    scanf("%d", &x);
+    
+    int ans = x;
+    bool looking = true;
+    while(looking){
+        int sum = 0;
+        string str = to_string(ans);
+        for(int i = 0; i < str.length(); i++){
+            sum += str[i] - '0';
+        }
+        if(sum%4 == 0)
+            looking = false;
+        ans++;
+    }
+    cout<<ans-1<<endl;
+    
+    
+    return 0;
+}

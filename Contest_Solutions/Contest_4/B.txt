@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ 
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    ll n;
+    cin>>n;
+    map<string, int> m;
+    while(n--){
+        string str;
+        cin>>str;
+        if(m.count(str)){
+            cout<<str<<m[str]<<endl;
+            m[str]++;
+        }
+        else{
+            cout<<"OK\n";
+            m[str]++;
+        }
+    }
+    return 0;
+}

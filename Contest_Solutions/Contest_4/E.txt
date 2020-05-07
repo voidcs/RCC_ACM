@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ 
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    ll t;
+    cin>>t;
+    while(t--){
+        map <ll, ll> m;
+        ll n;
+        cin>>n;
+        ll a[n];
+        for(int i = 0; i < n; i++)
+            cin>>a[i];
+        
+        for(int i = 0; i < n; i++)
+            m[a[i]]++;
+        
+        multiset<ll, greater <ll> > freq;
+        for(auto x: m){
+            freq.insert(x.second);
+        }
+        
+        ll maxPossible;
+        
+        set<ll> used;
+        ll ans = 0;
+        
+        set<ll>::iterator it;
+        maxPossible = INT_MAX;
+        
+        for(it = freq.begin(); it != freq.end(); it++){
+            maxPossible = min(maxPossible-1, *it);
+            if(maxPossible <= 0)
+                break;
+            if(!used.count(maxPossible)){
+                ans += maxPossible;
+                used.insert(maxPossible);
+            }       
+        }
+        cout<<ans<<endl;
+    }
+    return 0;
+}
