@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ 
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+  
+    ll t;
+    cin>>t;
+    
+    while(t--){
+        vector<ll> ans;
+        ll x;
+        ll mod = 1;
+        cin>>x;
+        while(x){
+            if(x%10)
+                ans.push_back(x%10 * mod);
+            x /= 10;
+            mod *= 10;
+        }
+        
+        cout<<ans.size()<<endl;
+        for(auto &x: ans)
+            cout<<x<<" ";
+        cout<<endl;
+    }
+    return 0;
+}

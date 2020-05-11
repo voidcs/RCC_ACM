@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ 
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+  
+    ll t;
+    cin>>t;
+    
+    while(t--){
+        map<ll, ll> m;
+        ll n;
+        cin>>n;
+       
+        ll a[n];
+        for(int i = 0; i < n; i++){
+            cin>>a[i];
+            m[a[i]]++;
+        }
+        
+        ll ans = 0;
+        for(int i = 0; i < n; i++){
+            ll sum = 0;
+            ll count = 0;
+            for(int j = i; j < n; j++){
+                count++;
+                sum += a[j];
+                if(m.count(sum) && count > 1){
+                    //cout<<"ADDED AT SUM = "<<sum<<"   i: "<<i<<"   j: "<<j<<endl;
+                    //cout<<"ADDED: "<<m[sum]<<endl;
+                    ans += m[sum];
+                    m.erase(sum);
+                }
+            }
+        }
+//        for(auto &x: m){
+//            cout<<x.first<<"   "<<x.second<<endl;
+//        }
+//        cout<<endl;
+        cout<<ans<<endl;
+    }
+    return 0;
+}
