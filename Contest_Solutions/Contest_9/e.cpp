@@ -12,6 +12,7 @@ int main(){
         for(int i = 0; i < n; i++)
             cin>>a[i];
         
+        sort(a, a + n);
         set<ll> sums;
         for(int i = 0; i < n - 1; i++){
             for(int j = i + 1; j < n; j++){
@@ -22,20 +23,15 @@ int main(){
         ll ans = 0;
         for(auto x: sums){
             ll goal = x;
-            vector<ll> v;
-            for(int i = 0; i < n; i++){
-                if(a[i] < goal)
-                    v.push_back(a[i]);
-            }
-            sort(v.begin(), v.end());
-            ll l = 0, r = v.size() - 1;
+
+            ll l = 0, r = n - 1;
             ll count = 0;
 
             while(l < r){
-                if(v[l] + v[r] > goal){
+                if(a[l] + a[r] > goal){
                     r--;
                 }
-                else if(v[l] + v[r] < goal)
+                else if(a[l] + a[r] < goal)
                     l++;
                 else{
                     count++;
