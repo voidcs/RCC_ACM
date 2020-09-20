@@ -37,7 +37,7 @@ int main(){
                     factors[i] = max(factors[i], count);
             }
             if(x > 1){
-                
+                factors[x] = max(factors[x], 1);
             }
         }
         ll LCM = 1;
@@ -64,6 +64,3 @@ int main(){
     }
     return 0;
 }
-
-
-
