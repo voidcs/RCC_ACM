@@ -13,7 +13,7 @@ int main(){
         int m = rand() % n + 1;
         //m *= 2;
         cout<<n<<" "<<m<<endl;
-        vector<vector<int>> adj(n+1, vector<int>(n+1));
+        vector<vector<int>> adj(n+1);
         vector<bool> vis(n+1);
         for(int i = 0; i < m; i++){
             ll x = rand() % n + 1;
