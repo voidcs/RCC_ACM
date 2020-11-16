@@ -1,57 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-vector<ll> par;
-
-ll find(ll x){
-    return (x == par[x]) ? x : par[x] = find(par[x]);
-}
-
-void unite(ll x, ll y){
-    x = find(x), y = find(y);
-    if(x != y){
-        par[x] = y;
-    }
-}
 
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    
     ll t;
     cin>>t;
     while(t--){
-        vector<pair<ll, ll>> v;
-        ll n, k;
-        cin>>n>>k;
-        par = vector<ll> (n+1, 0);
+        ll n, m;
+        cin>>n>>m;
+        vector<ll> par(n+1);
         iota(par.begin(), par.end(), 0);
         
-        for(int i = 0; i < k; i++){
+        function<ll(ll)> find = [&](ll x){
+            return (x == par[x]) ? x : par[x] = find(par[x]);
+        };    
+        
+        function<void(ll, ll)> unite = [&](ll a, ll b){
+            a = find(a), b = find(b);
+            if(a != b)
+                par[a] = par[b];
+        };
+        
+        vector<array<ll, 2>> unequal;
+        for(int i = 0; i < m; i++){
             ll x, y;
-            string str;
-            cin>>x>>str>>y;
-            if(str == "!="){
-                v.push_back({x,y});
-            }
+            string op;
+            cin>>x>>op>>y;
+            if(op == "!=")
+                unequal.push_back({x, y});
             else{
                 unite(x, y);
             }
         }
-
-        bool flag = 1;
-        for(int i = 0; i < v.size(); i++){
-            ll x = v[i].first;
-            ll y = v[i].second;
-            
-            if(find(par[x]) == find(par[y]))
-                flag = 0;
+        
+        bool valid = 1;
+        for(int i = 0; i < unequal.size(); i++){
+            ll x = find(unequal[i][0]);
+            ll y = find(unequal[i][1]);
+            if(x == y)
+                valid = 0;
         }
-        if(flag)
+        
+        if(valid)
             cout<<"YES\n";
         else
             cout<<"NO\n";
-        
     }
     return 0;
 }
