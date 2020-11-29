@@ -20,7 +20,7 @@ int main(){
 
         function<bool(string, string)> comp = [&](string x, string y){
             int l = min(x.length(), y.length());
-            for(int i = 0; i < n; i++){
+            for(int i = 0; i < l; i++){
                 if(m[x[i]] > m[y[i]])
                     return false;
                 else if (m[x[i]] < m[y[i]])
