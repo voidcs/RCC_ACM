@@ -11,7 +11,7 @@ int main(){
     cout<<t<<endl;
     while(t--){
         ll n, m;
-        n = 80 + rand() % 20 + 1;
+        n = 30 + rand() % 20 + 1;
         m = rand() % (n*2 + (n/2)) + 1;
         cout<<n<<" "<<m<<endl;
         vector<vector<ll>> adj(n+1);
@@ -70,7 +70,7 @@ int main(){
             cout<<"NO\n";
         else{
             cout<<"YES\n";
-            cout<<x<<endl;
+            cout<<x-1<<endl;
         }
     }
     
