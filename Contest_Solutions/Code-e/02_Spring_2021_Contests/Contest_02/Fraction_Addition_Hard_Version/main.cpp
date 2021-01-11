@@ -25,16 +25,16 @@ int main(){
         }
         for(int i = 0; i < n; i++){
             ll x = denom[i];
-            for(int i = 2; i*i <= x; i++){
+            for(int j = 2; j*j <= x; j++){
                 int count = 0;
-                if(x % i == 0){
-                    while(x % i == 0){
+                if(x % j == 0){
+                    while(x % j== 0){
                         count++;
-                        x /= i;
+                        x /= j;
                     }
                 }
                 if(count > 0)
-                    factors[i] = max(factors[i], count);
+                    factors[j] = max(factors[j], count);
             }
             if(x > 1){
                 factors[x] = max(factors[x], 1);
