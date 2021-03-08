@@ -2,12 +2,6 @@
 using namespace std;
 typedef long long ll;
 
-bool isPalin(vector<ll> v){
-    vector<ll> n = v;
-    reverse(n.begin(), n.end());
-    return (n == v);
-}
-
 int main(){
     int t;
     cin>>t;
@@ -16,7 +10,7 @@ int main(){
         cin>>base>>x;
         vector<ll> a;
         while(x){
-            a.push_back(x%base);
+            a.push_back(x % base);
             x /= base;
         }
       
