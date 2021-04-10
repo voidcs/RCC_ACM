@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+typedef long long ll;
+using namespace std;
+ll a[600000];
+
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    
+    ll t;
+    cin>>t;
+    while(t--){
+        ll ans1 = 0, ans2 = 0;
+        ll n;
+        cin>>n;
+        set<ll> s;
+        for(int i = 0; i < n; i++){
+            s.insert(i+1);
+        }
+        
+        ll c;
+        bool end = 0;
+        for(int i = 0; i < n; i++){
+            ll len;
+            cin>>len;
+            bool search = 1;
+            for(int j = 0; j < len; j++){
+                cin>>c;
+                if(search){
+                    if(s.count(c)){
+                        s.erase(c);
+                        search = 0;
+                    }
+                }
+            }
+            if(search){
+                ans1 = i+1;
+                end = 1;
+            }
+        }
+        if(end){
+            auto it = s.begin();
+            ans2 = *it;
+        }
+        if(ans1 == 0){
+            cout<<"OPTIMAL\n";
+        }
+        else{
+            cout<<"IMPROVE\n"<<ans1<<" "<<ans2<<endl;
+        }
+        
+        //s.clear();
+    }
+	return 0;
+}

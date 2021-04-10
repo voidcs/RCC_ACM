@@ -1,5 +1,0 @@
-Map: https://codeforces.com/contest/4/problem/C
-Set: https://codeforces.com/contest/1262/problem/B
-Set: https://codeforces.com/contest/1327/problem/B
-Priority Queue: https://codeforces.com/problemset/problem/1218/F
-
