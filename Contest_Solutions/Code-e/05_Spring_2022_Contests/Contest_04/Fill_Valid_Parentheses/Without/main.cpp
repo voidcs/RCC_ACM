@@ -14,9 +14,10 @@ int main(){
         cin>>s;
         stack<int> last;
         int ans = 0;
+        int bal = 0;
         function<void(int)> f = [&](int i){
             if(i == n){
-                if(last.empty()){
+                if(bal == 0){
                     ans++;
                 }
                 return;
@@ -24,30 +25,30 @@ int main(){
             //If we get to pick
             if(s[i] == '?'){
                 //Try an open
-                last.push(1);
+                bal++;
                 f(i+1);
-                last.pop();
+                bal--;
 
                 //Try a close parenthesis if the stack is not empty
-                if(last.size()){
-                    last.pop();
+                if(bal > 0){
+                    bal--;
                     f(i+1);
-                    last.push(1);
+                    bal++;
                 }
             }
             else if(s[i] != '?'){   //We get no choice here
                 if(s[i] == ')'){
                     //Can only continue if there is something in the stack
-                    if(last.size()){
-                        last.pop();
+                    if(bal > 0){
+                        bal--;
                         f(i+1);
-                        last.push(1);
+                        bal++;
                     }
                 }
-                else if(s[i] == '('){   //Try an open
-                    last.push(1);
+                else if(s[i] == '('){ 
+                    bal++;
                     f(i+1);
-                    last.pop();
+                    bal--;
                 }
             }
         };
